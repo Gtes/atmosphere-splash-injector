@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { PreviewSource } from "../components/SplashPreview";
-import { ROT_H, ROT_W, SPLASH_OFFSET, SRC_H, SRC_W } from "../constants";
+import { PKG_SIZE, ROT_H, ROT_W, SPLASH_OFFSET, SRC_H, SRC_W } from "../constants";
 import { canvasToPngDownload, downloadBytes } from "../download";
 import { injectedFileName } from "../lib/injectedFileName";
 import { inspectPackage3 } from "../package3/inspect";
@@ -55,6 +55,9 @@ export function useSplashInjector() {
     async (file: File) => {
       try {
         setBusy(true);
+        if (file.size !== PKG_SIZE) {
+          throw new Error(`Expected ${PKG_SIZE} bytes (8 MB), got ${file.size}`);
+        }
         const bytes = new Uint8Array(await file.arrayBuffer());
         const info = inspectPackage3(bytes, file.name);
         setPackage3(bytes);
