@@ -207,6 +207,10 @@ a {
   gap: 0.65rem;
 }
 
+.image-actions {
+  margin-top: 0.75rem;
+}
+
 button {
   appearance: none;
   border: 0;

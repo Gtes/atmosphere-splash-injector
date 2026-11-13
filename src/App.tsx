@@ -4,8 +4,14 @@ import { SplashPreview, type PreviewSource } from "./components/SplashPreview";
 import { StatusBar } from "./components/StatusBar";
 import { ROT_H, ROT_W, SPLASH_OFFSET, SRC_H, SRC_W } from "./constants";
 import { canvasToPngDownload, downloadBytes } from "./download";
+import { fitImageToSplash } from "./lib/fitImage";
 import { inspectPackage3 } from "./package3/inspect";
 import type { StatusKind } from "./types";
+
+interface PendingImage {
+  name: string;
+  bitmap: ImageBitmap;
+}
 
 function injectedFileName(name: string): string {
   const cleaned = (name.trim() || "package3").replace(/\.bak$/i, "");
@@ -25,6 +31,7 @@ export function App() {
   const [pkgPreview, setPkgPreview] = useState<PreviewSource>({ kind: "empty" });
 
   const [imageBitmap, setImageBitmap] = useState<ImageBitmap | null>(null);
+  const [pendingImage, setPendingImage] = useState<PendingImage | null>(null);
   const [imgMeta, setImgMeta] = useState("No image loaded");
 
   const [statusText, setStatusText] = useState("Load package3 and an image to continue.");
@@ -36,6 +43,12 @@ export function App() {
       imageBitmap?.close();
     };
   }, [imageBitmap]);
+
+  useEffect(() => {
+    return () => {
+      pendingImage?.bitmap.close();
+    };
+  }, [pendingImage]);
 
   const imagePreview = useMemo<PreviewSource>(
     () => (imageBitmap ? { kind: "bitmap", bitmap: imageBitmap } : { kind: "empty" }),
@@ -82,38 +95,79 @@ export function App() {
     [setStatus],
   );
 
+  const acceptImage = useCallback(
+    (bitmap: ImageBitmap, name: string) => {
+      setPendingImage((previous) => {
+        previous?.bitmap.close();
+        return null;
+      });
+      setImageBitmap((previous) => {
+        previous?.close();
+        return bitmap;
+      });
+      setImgMeta(`${name} · ${bitmap.width}×${bitmap.height}`);
+
+      if (package3 && slotLooksSafe) {
+        setStatus("Ready to inject. Processing stays in this browser.", "ok");
+      } else if (!package3) {
+        setStatus("Image loaded. Next: load a stock Atmosphere package3.", "ok");
+      }
+    },
+    [package3, setStatus, slotLooksSafe],
+  );
+
   const loadImage = useCallback(
     async (file: File) => {
       try {
         setBusy(true);
         const bitmap = await createImageBitmap(file);
-        if (
-          !(bitmap.width === SRC_W && bitmap.height === SRC_H) &&
-          !(bitmap.width === ROT_W && bitmap.height === ROT_H)
-        ) {
-          bitmap.close();
-          throw new Error(`Image must be ${SRC_W}×${SRC_H} (or already ${ROT_W}×${ROT_H})`);
+        const okSize =
+          (bitmap.width === SRC_W && bitmap.height === SRC_H) ||
+          (bitmap.width === ROT_W && bitmap.height === ROT_H);
+
+        if (!okSize) {
+          setImageBitmap((previous) => {
+            previous?.close();
+            return null;
+          });
+          setPendingImage((previous) => {
+            previous?.bitmap.close();
+            return { name: file.name, bitmap };
+          });
+          setImgMeta(`${file.name} · ${bitmap.width}×${bitmap.height} (needs ${SRC_W}×${SRC_H})`);
+          setStatus(
+            [
+              `Image is ${bitmap.width}×${bitmap.height}, but Atmosphere needs ${SRC_W}×${SRC_H} (or ${ROT_W}×${ROT_H}).`,
+              "Use “Resize & crop to 1280×720” to center-crop it, or pick another image.",
+            ].join("\n"),
+            "warn",
+          );
+          return;
         }
 
-        setImageBitmap((previous) => {
-          previous?.close();
-          return bitmap;
-        });
-        setImgMeta(`${file.name} · ${bitmap.width}×${bitmap.height}`);
-
-        if (package3 && slotLooksSafe) {
-          setStatus("Ready to inject. Processing stays in this browser.", "ok");
-        } else if (!package3) {
-          setStatus("Image loaded. Next: load a stock Atmosphere package3.", "ok");
-        }
+        acceptImage(bitmap, file.name);
       } catch (error) {
         setStatus(error instanceof Error ? error.message : String(error), "err");
       } finally {
         setBusy(false);
       }
     },
-    [package3, setStatus, slotLooksSafe],
+    [acceptImage, setStatus],
   );
+
+  const resizePendingImage = useCallback(async () => {
+    if (!pendingImage) return;
+    try {
+      setBusy(true);
+      const fitted = await fitImageToSplash(pendingImage.bitmap);
+      acceptImage(fitted, pendingImage.name);
+      setStatus(`Resized and center-cropped ${pendingImage.name} to ${SRC_W}×${SRC_H}.`, "ok");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : String(error), "err");
+    } finally {
+      setBusy(false);
+    }
+  }, [acceptImage, pendingImage, setStatus]);
 
   const injectSplash = useCallback(async () => {
     if (!package3 || !imageBitmap || !slotLooksSafe) return;
@@ -199,10 +253,17 @@ export function App() {
           />
           <SplashPreview
             label="New image preview"
-            source={imagePreview}
+            source={pendingImage ? { kind: "bitmap", bitmap: pendingImage.bitmap } : imagePreview}
             canvasLabel="New splash preview"
           />
           <p className="file-meta">{imgMeta}</p>
+          {pendingImage ? (
+            <div className="buttons image-actions">
+              <button type="button" disabled={busy} onClick={() => void resizePendingImage()}>
+                Resize &amp; crop to 1280×720
+              </button>
+            </div>
+          ) : null}
         </section>
 
         <section className="panel actions">
