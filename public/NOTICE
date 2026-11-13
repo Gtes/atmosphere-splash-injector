@@ -1,0 +1,39 @@
+Atmosphere Splash Injector
+==========================
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program (see the LICENSE file).  If not, see
+<https://www.gnu.org/licenses/>.
+
+
+Third-party / upstream attribution
+----------------------------------
+
+Splash insertion layout and conversion rules are based on Atmosphère's
+utilities/insert_splash_screen.py from the Atmosphere-NX project:
+
+  https://github.com/Atmosphere-NX/Atmosphere
+  https://github.com/Atmosphere-NX/Atmosphere/blob/master/utilities/insert_splash_screen.py
+
+Atmosphère is Copyright (c) Atmosphère-NX and licensed under the
+GNU General Public License, version 2.
+
+This tool does not redistribute Atmosphère binaries. Users supply their
+own package3 from an official Atmosphère release and their own images.
+
+
+Fonts
+-----
+
+The UI may load IBM Plex Sans and IBM Plex Mono from Google Fonts.
+IBM Plex is licensed under the SIL Open Font License 1.1:
+  https://github.com/IBM/plex/blob/master/LICENSE.txt

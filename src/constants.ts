@@ -1,0 +1,9 @@
+export const PKG_SIZE = 0x800000;
+export const SPLASH_OFFSET = 0x400000;
+export const SPLASH_END = 0x7c0000;
+export const SPLASH_SIZE = 0x3c0000;
+export const SRC_W = 1280;
+export const SRC_H = 720;
+export const ROT_W = 720;
+export const ROT_H = 1280;
+export const STRIDE = 768;

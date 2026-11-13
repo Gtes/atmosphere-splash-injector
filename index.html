@@ -1,95 +1,16 @@
 <!DOCTYPE html>
-<!--
-  Atmosphere Splash Injector
-  Copyright (c) 2026 the Atmosphere Splash Injector contributors
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 2.
-  See LICENSE and NOTICE for details.
-
-  Splash layout based on Atmosphère utilities/insert_splash_screen.py
-  (Copyright (c) Atmosphère-NX, GPLv2).
--->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Client-side Atmosphère package3 splash injector. Files stay in your browser." />
   <title>Atmosphere Splash Injector</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page">
-    <header class="header">
-      <p class="eyebrow">Atmosphere · package3</p>
-      <h1>Splash Injector</h1>
-      <p class="lede">
-        Client-side tool for stock Atmosphere. Matches
-        <code>utilities/insert_splash_screen.py</code>:
-        1280×720 image → BGRA splash at offset <code>0x400000</code>.
-      </p>
-    </header>
-
-    <main class="grid">
-      <section class="panel">
-        <h2>1. package3</h2>
-        <label class="drop" id="pkgDrop">
-          <input id="pkgInput" type="file" hidden />
-          <span class="drop-title">Drop package3 here</span>
-          <span class="drop-sub">Must be PK31 · exactly 8&nbsp;MB</span>
-        </label>
-        <p class="preview-label">Current splash in package3</p>
-        <div class="preview-wrap">
-          <canvas id="pkgPreview" aria-label="Current package3 splash"></canvas>
-        </div>
-        <p class="file-meta" id="pkgMeta">No file loaded</p>
-      </section>
-
-      <section class="panel">
-        <h2>2. New splash image</h2>
-        <label class="drop" id="imgDrop">
-          <input id="imgInput" type="file" accept="image/png,image/jpeg,image/bmp,image/webp" hidden />
-          <span class="drop-title">Drop 1280×720 image</span>
-          <span class="drop-sub">PNG / BMP / JPEG · landscape 1280×720</span>
-        </label>
-        <p class="preview-label">New image preview</p>
-        <div class="preview-wrap">
-          <canvas id="preview" aria-label="New splash preview"></canvas>
-        </div>
-        <p class="file-meta" id="imgMeta">No image loaded</p>
-      </section>
-
-      <section class="panel actions">
-        <h2>3. Patch &amp; download</h2>
-        <p class="note">
-          Files never leave this browser. Official Atmosphere only — not custom
-          builds that store a splash inside <code>boot</code>.
-        </p>
-        <div class="status" id="status" role="status">Load package3 and an image to continue.</div>
-        <div class="buttons">
-          <button id="injectBtn" type="button" disabled>Inject splash &amp; download</button>
-          <button id="extractBtn" type="button" class="ghost" disabled>Extract current splash</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p>
-        Logic from
-        <a href="https://github.com/Atmosphere-NX/Atmosphere/blob/master/utilities/insert_splash_screen.py" rel="noopener" target="_blank">Atmosphere insert_splash_screen.py</a>.
-        If the splash slot overlaps modules, injection is blocked.
-      </p>
-      <p>
-        Licensed under
-        <a href="LICENSE">GPL-2.0</a>.
-        See
-        <a href="NOTICE">NOTICE</a>
-        for Atmosphère attribution. Free / non-commercial use; no warranty.
-      </p>
-    </footer>
-  </div>
-  <script src="app.js" defer></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
