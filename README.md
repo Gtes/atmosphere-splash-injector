@@ -28,3 +28,7 @@ Pre-commit runs Prettier + ESLint on staged files via Husky / lint-staged.
 GNU General Public License, version 2. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 This project reimplements splash conversion logic from Atmosphère (GPLv2). It is not affiliated with Atmosphere-NX.
+
+## AI assistance
+
+This project was built with [Cursor](https://cursor.com) and reviewed by a human. Use at your own risk.
