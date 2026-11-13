@@ -12,7 +12,7 @@ export function ThemeToggle({ theme, onCycle }: ThemeToggleProps) {
       className="theme-toggle ghost"
       onClick={onCycle}
       aria-label={`Theme: ${THEME_LABEL[theme]}. Click to switch.`}
-      title="Cycle theme (dark / light / dense)"
+      title="Switch theme (dark / light)"
     >
       Theme · {THEME_LABEL[theme]}
     </button>

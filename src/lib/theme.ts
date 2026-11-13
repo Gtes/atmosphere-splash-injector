@@ -1,17 +1,27 @@
-export type ThemeId = "dark" | "light" | "dense";
+export type ThemeId = "dark" | "light";
 
-export const THEME_ORDER: ThemeId[] = ["dark", "light", "dense"];
+export const THEME_ORDER: ThemeId[] = ["dark", "light"];
 
 export const THEME_LABEL: Record<ThemeId, string> = {
   dark: "Dark",
   light: "Light",
-  dense: "Dense",
 };
 
 const STORAGE_KEY = "asi-theme";
 
 export function isThemeId(value: string): value is ThemeId {
   return THEME_ORDER.includes(value as ThemeId);
+}
+
+export function systemTheme(): ThemeId {
+  try {
+    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+  } catch {
+    // ignore
+  }
+  return "dark";
 }
 
 export function readStoredTheme(): ThemeId {
@@ -21,7 +31,7 @@ export function readStoredTheme(): ThemeId {
   } catch {
     // ignore
   }
-  return "dark";
+  return systemTheme();
 }
 
 export function writeStoredTheme(theme: ThemeId): void {
@@ -34,10 +44,9 @@ export function writeStoredTheme(theme: ThemeId): void {
 
 export function applyTheme(theme: ThemeId): void {
   document.documentElement.dataset.theme = theme;
-  document.documentElement.style.colorScheme = theme === "light" ? "light" : "dark";
+  document.documentElement.style.colorScheme = theme;
 }
 
 export function nextTheme(current: ThemeId): ThemeId {
-  const index = THEME_ORDER.indexOf(current);
-  return THEME_ORDER[(index + 1) % THEME_ORDER.length] ?? "dark";
+  return current === "dark" ? "light" : "dark";
 }

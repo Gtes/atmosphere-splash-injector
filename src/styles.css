@@ -64,42 +64,6 @@ html[data-theme="light"] {
   --panel-bg: color-mix(in srgb, var(--bg1) 92%, #d5dde8);
 }
 
-html[data-theme="dense"] {
-  --bg0: #101218;
-  --bg1: #171a22;
-  --bg2: #1f232c;
-  --line: #2f3542;
-  --text: #e6e4df;
-  --muted: #8f97a6;
-  --accent: #3ecf8e;
-  --accent-dim: #2a9b68;
-  --warn: #e0a35b;
-  --danger: #e06868;
-  --code: #c9d4c4;
-  --glow-a: #152430;
-  --glow-b: #1a2620;
-  --drop-border: #434b5c;
-  --drop-hover-bg: #223028;
-  --btn-fg: #082016;
-  --btn-hover: #55db9d;
-  --ghost-hover-line: #6a7386;
-  --status-ok: #b7f0d2;
-  --status-warn: #f0d4ad;
-  --status-err: #f0b4b4;
-  --checker-a: #13161d;
-  --checker-b: #0a0c10;
-  --panel-bg: color-mix(in srgb, var(--bg1) 90%, black);
-  --radius: 6px;
-  --page-pad-y: 1.25rem;
-  --page-pad-bottom: 1.75rem;
-  --grid-gap: 0.65rem;
-  --grid-top: 1rem;
-  --panel-pad: 0.7rem 0.8rem 0.8rem;
-  --drop-min-h: 5.75rem;
-  --title-size: clamp(1.35rem, 3vw, 1.85rem);
-  --h2-size: 0.8rem;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -143,15 +107,6 @@ a {
   font-size: var(--title-size);
   font-weight: 600;
   letter-spacing: -0.02em;
-}
-
-html[data-theme="dense"] .header h1 {
-  margin: 0.1rem 0 0.45rem;
-}
-
-html[data-theme="dense"] .lede {
-  font-size: 0.9rem;
-  line-height: 1.4;
 }
 
 .eyebrow {
@@ -203,18 +158,10 @@ html[data-theme="dense"] .lede {
   text-transform: uppercase;
 }
 
-html[data-theme="dense"] .panel h2 {
-  margin-bottom: 0.55rem;
-}
-
 .drop-block {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-}
-
-html[data-theme="dense"] .drop-block {
-  gap: 0.35rem;
 }
 
 .drop {
@@ -237,11 +184,6 @@ html[data-theme="dense"] .drop-block {
     outline-color 0.15s ease,
     box-shadow 0.15s ease,
     transform 0.15s ease;
-}
-
-html[data-theme="dense"] .drop {
-  padding: 0.65rem;
-  gap: 0.2rem;
 }
 
 .drop:hover {
@@ -293,11 +235,6 @@ html[data-theme="dense"] .drop {
   text-align: center;
 }
 
-html[data-theme="dense"] .drop-sub,
-html[data-theme="dense"] .drop-hint {
-  font-size: 0.75rem;
-}
-
 .drop-hint {
   margin: 0;
   color: var(--muted);
@@ -318,22 +255,12 @@ html[data-theme="dense"] .drop-hint {
   word-break: break-all;
 }
 
-html[data-theme="dense"] .file-meta {
-  margin-top: 0.45rem;
-  font-size: 0.72rem;
-}
-
 .preview-label {
   margin: 0.85rem 0 0.4rem;
   color: var(--muted);
   font-size: 0.8rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-}
-
-html[data-theme="dense"] .preview-label {
-  margin: 0.5rem 0 0.3rem;
-  font-size: 0.72rem;
 }
 
 .preview-wrap {
@@ -360,11 +287,6 @@ html[data-theme="dense"] .preview-label {
   line-height: 1.45;
 }
 
-html[data-theme="dense"] .note {
-  margin-bottom: 0.55rem;
-  font-size: 0.85rem;
-}
-
 .status {
   display: flex;
   align-items: flex-start;
@@ -376,12 +298,6 @@ html[data-theme="dense"] .note {
   background: var(--bg2);
   font-size: 0.92rem;
   line-height: 1.4;
-}
-
-html[data-theme="dense"] .status {
-  margin-bottom: 0.65rem;
-  padding: 0.55rem 0.7rem;
-  font-size: 0.85rem;
 }
 
 .status-copy {
@@ -451,16 +367,8 @@ html[data-theme="dense"] .status {
   gap: 0.65rem;
 }
 
-html[data-theme="dense"] .buttons {
-  gap: 0.45rem;
-}
-
 .image-actions {
   margin-top: 0.75rem;
-}
-
-html[data-theme="dense"] .image-actions {
-  margin-top: 0.45rem;
 }
 
 .crop-editor {
@@ -526,16 +434,6 @@ html[data-theme="dense"] .image-actions {
   padding: 0;
 }
 
-html[data-theme="dense"] .crop-toolbar {
-  margin-top: 0.45rem;
-  gap: 0.4rem;
-}
-
-html[data-theme="dense"] .icon-btn {
-  width: 2rem;
-  height: 2rem;
-}
-
 button {
   appearance: none;
   border: 0;
@@ -545,11 +443,6 @@ button {
   color: var(--btn-fg);
   font: 500 0.95rem var(--font);
   cursor: pointer;
-}
-
-html[data-theme="dense"] button {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.85rem;
 }
 
 button:hover:not(:disabled) {
@@ -577,11 +470,6 @@ button.ghost:hover:not(:disabled) {
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.45;
-}
-
-html[data-theme="dense"] .footer {
-  margin-top: 1rem;
-  font-size: 0.78rem;
 }
 
 @media (max-width: 760px) {
