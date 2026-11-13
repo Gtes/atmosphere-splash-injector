@@ -225,6 +225,9 @@ a {
 }
 
 .status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   margin-bottom: 1rem;
   padding: 0.75rem 0.9rem;
   border-radius: 8px;
@@ -234,12 +237,50 @@ a {
   line-height: 1.4;
 }
 
+.status-copy {
+  min-width: 0;
+  flex: 1;
+}
+
 .status-line {
   margin: 0;
 }
 
 .status-line + .status-line {
   margin-top: 0.35rem;
+}
+
+.status-spinner {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  border: 2px solid color-mix(in srgb, var(--muted) 45%, transparent);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-spinner {
+    animation: none;
+    border-top-color: color-mix(in srgb, var(--muted) 45%, transparent);
+    opacity: 0.7;
+  }
+
+  .drop {
+    transition: none;
+  }
+}
+
+.page.is-busy button:disabled {
+  opacity: 0.45;
 }
 
 .status.ok {

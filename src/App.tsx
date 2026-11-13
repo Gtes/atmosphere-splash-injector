@@ -212,7 +212,7 @@ export function App() {
   }, [package3, setStatus]);
 
   return (
-    <div className="page">
+    <div className={`page${busy ? " is-busy" : ""}`} aria-busy={busy}>
       <header className="header">
         <p className="eyebrow">Atmosphere · package3</p>
         <h1>Splash Injector</h1>
@@ -241,6 +241,7 @@ export function App() {
                 </a>
               </>
             }
+            disabled={busy}
             onFile={(file) => {
               void loadPackage(file);
             }}
@@ -260,6 +261,7 @@ export function App() {
             subtitle="PNG / BMP / JPEG / WebP · ideally 1280×720 landscape"
             accept="image/png,image/jpeg,image/bmp,image/webp"
             hint="Wrong sizes can be center-cropped to 1280×720 after drop."
+            disabled={busy}
             onFile={(file) => {
               void loadImage(file);
             }}
@@ -285,7 +287,7 @@ export function App() {
             Files never leave this browser. Official Atmosphere only — not custom builds that store
             a splash inside <code>boot</code>.
           </p>
-          <StatusBar text={statusText} kind={statusKind} />
+          <StatusBar text={statusText} kind={statusKind} busy={busy} />
           <div className="buttons">
             <button type="button" disabled={!canInject} onClick={() => void injectSplash()}>
               Inject splash &amp; download
