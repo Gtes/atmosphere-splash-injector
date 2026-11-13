@@ -2,9 +2,17 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { DropZone } from "./components/DropZone";
 import { SplashPreview, type PreviewSource } from "./components/SplashPreview";
 import { StatusBar } from "./components/StatusBar";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { ROT_H, ROT_W, SPLASH_OFFSET, SRC_H, SRC_W } from "./constants";
 import { canvasToPngDownload, downloadBytes } from "./download";
 import { fitImageToSplash } from "./lib/fitImage";
+import {
+  applyTheme,
+  nextTheme,
+  readStoredTheme,
+  writeStoredTheme,
+  type ThemeId,
+} from "./lib/theme";
 import { inspectPackage3 } from "./package3/inspect";
 import type { StatusKind } from "./types";
 
@@ -37,6 +45,16 @@ export function App() {
   const [statusText, setStatusText] = useState("Load package3 and an image to continue.");
   const [statusKind, setStatusKind] = useState<StatusKind>("");
   const [busy, setBusy] = useState(false);
+  const [theme, setTheme] = useState<ThemeId>(() => readStoredTheme());
+
+  const cycleTheme = useCallback(() => {
+    setTheme((current) => {
+      const next = nextTheme(current);
+      applyTheme(next);
+      writeStoredTheme(next);
+      return next;
+    });
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -214,7 +232,10 @@ export function App() {
   return (
     <div className={`page${busy ? " is-busy" : ""}`} aria-busy={busy}>
       <header className="header">
-        <p className="eyebrow">Atmosphere · package3</p>
+        <div className="header-top">
+          <p className="eyebrow">Atmosphere · package3</p>
+          <ThemeToggle theme={theme} onCycle={cycleTheme} />
+        </div>
         <h1>Splash Injector</h1>
         <p className="lede">
           Client-side tool for stock Atmosphere. Matches{" "}
