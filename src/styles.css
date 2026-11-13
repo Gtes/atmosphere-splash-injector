@@ -463,6 +463,79 @@ html[data-theme="dense"] .image-actions {
   margin-top: 0.45rem;
 }
 
+.crop-editor {
+  margin-top: 0.15rem;
+}
+
+.crop-stage {
+  touch-action: none;
+  cursor: grab;
+}
+
+.crop-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.crop-canvas:active {
+  cursor: grabbing;
+}
+
+.crop-canvas.disabled {
+  cursor: not-allowed;
+}
+
+.crop-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.crop-zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 1 1 12rem;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.crop-zoom input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.crop-zoom-value {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  min-width: 3.2rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+}
+
+html[data-theme="dense"] .crop-toolbar {
+  margin-top: 0.45rem;
+  gap: 0.4rem;
+}
+
+html[data-theme="dense"] .icon-btn {
+  width: 2rem;
+  height: 2rem;
+}
+
 button {
   appearance: none;
   border: 0;
