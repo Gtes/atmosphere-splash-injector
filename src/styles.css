@@ -102,6 +102,41 @@ a {
   gap: 0.75rem;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.header-actions .github-link,
+.header-actions .theme-toggle {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.header-actions .github-link {
+  width: 2.25rem;
+  padding: 0;
+  color: var(--text);
+  text-decoration: none;
+  background: transparent;
+}
+
+.header-actions .github-link:hover {
+  border-color: var(--ghost-hover-line);
+  background: var(--bg2);
+  color: var(--text);
+}
+
 .header h1 {
   margin: 0.2rem 0 0.75rem;
   font-size: var(--title-size);
@@ -127,8 +162,6 @@ a {
 
 .theme-toggle {
   flex: 0 0 auto;
-  padding: 0.4rem 0.7rem;
-  font-size: 0.8rem;
 }
 
 .grid {

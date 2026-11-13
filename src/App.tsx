@@ -1,4 +1,5 @@
 import { DropZone } from "./components/DropZone";
+import { GitHubLink } from "./components/GitHubLink";
 import { ImageCropEditor } from "./components/ImageCropEditor";
 import { SplashPreview } from "./components/SplashPreview";
 import { StatusBar } from "./components/StatusBar";
@@ -31,7 +32,10 @@ export function App() {
       <header className="header">
         <div className="header-top">
           <p className="eyebrow">Atmosphere · package3</p>
-          <ThemeToggle theme={theme} onCycle={cycleTheme} />
+          <div className="header-actions">
+            <GitHubLink />
+            <ThemeToggle theme={theme} onCycle={cycleTheme} />
+          </div>
         </div>
         <h1>Splash Injector</h1>
         <p className="lede">

@@ -1,6 +1,14 @@
 # Atmosphere Splash Injector
 
-Client-side browser tool that injects a 1280×720 splash into a stock Atmosphère `package3`, using the same layout as [`utilities/insert_splash_screen.py`](https://github.com/Atmosphere-NX/Atmosphere/blob/master/utilities/insert_splash_screen.py).
+**Custom Atmosphère boot splash for Nintendo Switch — in your browser.**
+
+Replace the stock Atmosphère `package3` splash with your own 1280×720 image. Runs entirely client-side: drop files, crop if needed, download the patched `package3`. No uploads, no installers.
+
+[Live demo](https://gtes.github.io/atmosphere-splash-injector/) · [Source](https://github.com/gtes/atmosphere-splash-injector)
+
+![Atmosphere Splash Injector — browser UI with package3 and splash image panels](docs/preview.png)
+
+Client-side tool that injects a 1280×720 splash into a stock Atmosphère `package3`, matching [`utilities/insert_splash_screen.py`](https://github.com/Atmosphere-NX/Atmosphere/blob/master/utilities/insert_splash_screen.py).
 
 Files never leave your browser. Official Atmosphère only:
 https://github.com/Atmosphere-NX/Atmosphere
