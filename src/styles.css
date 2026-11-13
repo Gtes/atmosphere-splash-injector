@@ -178,6 +178,14 @@ a {
   line-height: 1.4;
 }
 
+.status-line {
+  margin: 0;
+}
+
+.status-line + .status-line {
+  margin-top: 0.35rem;
+}
+
 .status.ok {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
   color: #b7f0d2;

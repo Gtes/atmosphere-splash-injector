@@ -126,8 +126,16 @@ export function App() {
       const patched = new Uint8Array(package3);
       patched.set(splash, SPLASH_OFFSET);
 
-      downloadBytes(patched, injectedFileName(packageName));
-      setStatus("Download started. The original package3 preview is unchanged.", "ok");
+      const outName = injectedFileName(packageName);
+      downloadBytes(patched, outName);
+      setStatus(
+        [
+          `Download started: ${outName}`,
+          "Copy it to atmosphere/package3 on the SD card (replace the existing file).",
+          "The loaded package3 preview above is unchanged.",
+        ].join("\n"),
+        "ok",
+      );
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error), "err");
     } finally {
