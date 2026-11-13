@@ -24,8 +24,7 @@ body {
   min-height: 100%;
   background:
     radial-gradient(1200px 600px at 10% -10%, #1e3140 0%, transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, #243028 0%, transparent 50%),
-    var(--bg0);
+    radial-gradient(900px 500px at 100% 0%, #243028 0%, transparent 50%), var(--bg0);
   color: var(--text);
   font-family: var(--font);
 }
@@ -108,7 +107,9 @@ a {
   border-radius: 8px;
   background: var(--bg2);
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 
 .drop:hover,

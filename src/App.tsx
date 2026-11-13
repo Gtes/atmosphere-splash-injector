@@ -156,8 +156,8 @@ export function App() {
         <h1>Splash Injector</h1>
         <p className="lede">
           Client-side tool for stock Atmosphere. Matches{" "}
-          <code>utilities/insert_splash_screen.py</code>: 1280×720 image → BGRA splash at
-          offset <code>0x400000</code>.
+          <code>utilities/insert_splash_screen.py</code>: 1280×720 image → BGRA splash at offset{" "}
+          <code>0x400000</code>.
         </p>
       </header>
 
@@ -200,8 +200,8 @@ export function App() {
         <section className="panel actions">
           <h2>3. Patch &amp; download</h2>
           <p className="note">
-            Files never leave this browser. Official Atmosphere only — not custom builds that
-            store a splash inside <code>boot</code>.
+            Files never leave this browser. Official Atmosphere only — not custom builds that store
+            a splash inside <code>boot</code>.
           </p>
           <StatusBar text={statusText} kind={statusKind} />
           <div className="buttons">

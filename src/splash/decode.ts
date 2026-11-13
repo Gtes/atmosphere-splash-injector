@@ -1,12 +1,4 @@
-import {
-  ROT_H,
-  ROT_W,
-  SPLASH_END,
-  SPLASH_OFFSET,
-  SRC_H,
-  SRC_W,
-  STRIDE,
-} from "../constants";
+import { ROT_H, ROT_W, SPLASH_END, SPLASH_OFFSET, SRC_H, SRC_W, STRIDE } from "../constants";
 
 /** Decode the official splash slot back to a 1280×720 canvas. */
 export function decodeSplashCanvas(bytes: Uint8Array): HTMLCanvasElement {

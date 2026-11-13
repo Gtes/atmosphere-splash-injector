@@ -1,10 +1,4 @@
-import {
-  PKG_SIZE,
-  ROT_W,
-  SPLASH_END,
-  SPLASH_OFFSET,
-  STRIDE,
-} from "../constants";
+import { PKG_SIZE, ROT_W, SPLASH_END, SPLASH_OFFSET, STRIDE } from "../constants";
 import type { PackageInspection, StatusKind } from "../types";
 import { parseContentEntries } from "./parse";
 

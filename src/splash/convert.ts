@@ -1,11 +1,4 @@
-import {
-  ROT_H,
-  ROT_W,
-  SPLASH_SIZE,
-  SRC_H,
-  SRC_W,
-  STRIDE,
-} from "../constants";
+import { ROT_H, ROT_W, SPLASH_SIZE, SRC_H, SRC_W, STRIDE } from "../constants";
 
 /** Convert a 1280×720 (or already 720×1280) image to the official splash blob. */
 export function convertImageToSplash(bitmap: ImageBitmap): Uint8Array {

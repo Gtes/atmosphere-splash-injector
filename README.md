@@ -17,7 +17,11 @@ npm run dev
 ```bat
 npm run build
 npm run preview
+npm run lint
+npm run format
 ```
+
+Pre-commit runs Prettier + ESLint on staged files via Husky / lint-staged.
 
 ## License
 

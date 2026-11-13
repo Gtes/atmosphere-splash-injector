@@ -18,10 +18,12 @@ export function parseContentEntries(bytes: Uint8Array): ContentEntry[] {
     if (end === 0) break;
 
     const name = new TextDecoder().decode(nameBytes.subarray(0, end));
-    if (![...name].every((ch) => {
-      const code = ch.charCodeAt(0);
-      return code >= 32 && code < 127;
-    })) {
+    if (
+      ![...name].every((ch) => {
+        const code = ch.charCodeAt(0);
+        return code >= 32 && code < 127;
+      })
+    ) {
       break;
     }
 
