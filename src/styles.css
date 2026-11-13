@@ -95,6 +95,12 @@ a {
   text-transform: uppercase;
 }
 
+.drop-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
 .drop {
   display: flex;
   flex-direction: column;
@@ -107,15 +113,53 @@ a {
   border-radius: 8px;
   background: var(--bg2);
   cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   transition:
     border-color 0.15s ease,
-    background 0.15s ease;
+    background 0.15s ease,
+    outline-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
-.drop:hover,
-.drop.drag {
+.drop:hover {
   border-color: var(--accent);
   background: #273329;
+}
+
+.drop.drag {
+  border-color: var(--accent);
+  border-style: solid;
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg2));
+  outline-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+  transform: scale(1.01);
+}
+
+.drop.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.drop-badge {
+  margin-bottom: 0.15rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg1) 70%, transparent);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.drop.drag .drop-badge {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  color: #b7f0d2;
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg2));
 }
 
 .drop-title {
@@ -126,6 +170,18 @@ a {
   color: var(--muted);
   font-size: 0.85rem;
   text-align: center;
+}
+
+.drop-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.drop-hint a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .file-meta {

@@ -229,6 +229,18 @@ export function App() {
           <DropZone
             title="Drop package3 here"
             subtitle="Must be PK31 · exactly 8 MB"
+            hint={
+              <>
+                From a stock Atmosphère release zip: <code>atmosphere/package3</code>.{" "}
+                <a
+                  href="https://github.com/Atmosphere-NX/Atmosphere/releases"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Get releases
+                </a>
+              </>
+            }
             onFile={(file) => {
               void loadPackage(file);
             }}
@@ -244,9 +256,10 @@ export function App() {
         <section className="panel">
           <h2>2. New splash image</h2>
           <DropZone
-            title="Drop 1280×720 image"
-            subtitle="PNG / BMP / JPEG · landscape 1280×720"
+            title="Drop splash image"
+            subtitle="PNG / BMP / JPEG / WebP · ideally 1280×720 landscape"
             accept="image/png,image/jpeg,image/bmp,image/webp"
+            hint="Wrong sizes can be center-cropped to 1280×720 after drop."
             onFile={(file) => {
               void loadImage(file);
             }}
